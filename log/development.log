@@ -1,0 +1,836 @@
+  [1m[35m (362.9ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (356.1ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('4952411849115310650', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (21.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to DeviseCreateAdminUsers (20170228123615)
+  [1m[35m (271.6ms)[0m  [1m[35mCREATE TABLE `admin_users` (`id` int AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (321.1ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_admin_users_on_email`  ON `admin_users` (`email`) [0m
+  [1m[35m (280.0ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_admin_users_on_reset_password_token`  ON `admin_users` (`reset_password_token`) [0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170228123615')[0m
+  [1m[35m (42.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateActiveAdminComments (20170228123616)
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class CreateActiveAdminComments < ActiveRecord::Migration[4.2] (called from load at /home/satan/.rbenv/versions/2.4.0/bin/rake:22)
+  [1m[35m (310.9ms)[0m  [1m[35mCREATE TABLE `active_admin_comments` (`id` int AUTO_INCREMENT PRIMARY KEY, `namespace` varchar(255), `body` text, `resource_id` varchar(255) NOT NULL, `resource_type` varchar(255) NOT NULL, `author_type` varchar(255), `author_id` int, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (265.1ms)[0m  [1m[35mCREATE  INDEX `index_active_admin_comments_on_namespace`  ON `active_admin_comments` (`namespace`) [0m
+  [1m[35m (333.3ms)[0m  [1m[35mCREATE  INDEX `index_active_admin_comments_on_author_type_and_author_id`  ON `active_admin_comments` (`author_type`, `author_id`) [0m
+  [1m[35m (278.7ms)[0m  [1m[35mCREATE  INDEX `index_active_admin_comments_on_resource_type_and_resource_id`  ON `active_admin_comments` (`resource_type`, `resource_id`) [0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170228123616')[0m
+  [1m[35m (121.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (22.0ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2017-02-28 12:39:33', '2017-02-28 12:39:33')[0m
+  [1m[35m (51.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK('4952411849115310650')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW CREATE TABLE `active_admin_comments`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'active_admin_comments'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW CREATE TABLE `admin_users`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'admin_users'[0m
+Started GET "/" for 127.0.0.1 at 2017-02-28 13:44:24 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/railties-5.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/railties-5.0.1/lib/rails/templates/rails/welcome/index.html.erb (11.6ms)
+Completed 200 OK in 84ms (Views: 46.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2017-02-28 13:44:30 +0100
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2017-02-28 13:44:30 +0100
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (1.5ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (140.2ms)
+Started GET "/admin" for 127.0.0.1 at 2017-02-28 13:44:32 +0100
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2017-02-28 13:44:32 +0100
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (0.7ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (26.0ms)
+Completed 200 OK in 8088ms (Views: 8025.3ms | ActiveRecord: 24.5ms)
+
+
+Completed 200 OK in 6320ms (Views: 6319.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2017-02-28 13:44:49 +0100
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"S+uVHtuI7YsWuvQKzabCY0ALqvUjqBUYrJMFQ8DEEFvP3/7hJ52ePIVLD5Bny5t7IbJsR+73ln5Oyc5L5swj5g==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'admin@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 39ms (ActiveRecord: 0.7ms)
+
+
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"S+uVHtuI7YsWuvQKzabCY0ALqvUjqBUYrJMFQ8DEEFvP3/7hJ52ePIVLD5Bny5t7IbJsR+73ln5Oyc5L5swj5g==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (0.6ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (14.2ms)
+Completed 200 OK in 323ms (Views: 49.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2017-02-28 13:44:58 +0100
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eIkwGbXh0DeSOANJ5mrUSCc/etXMYMt3H0nW6BcLFQf8vVvmSfSjgAHJ+NNMB41QRoa8ZwE/SBH9Ex3gMQMmug==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.4ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'admin@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.4ms)
+
+
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eIkwGbXh0DeSOANJ5mrUSCc/etXMYMt3H0nW6BcLFQf8vVvmSfSjgAHJ+NNMB41QRoa8ZwE/SBH9Ex3gMQMmug==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (0.6ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (9.7ms)
+Completed 200 OK in 180ms (Views: 60.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2017-02-28 13:45:28 +0100
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"k2MpEUW1yoBD9dFbzpp5k2uvzaXcaskynd1WpfbF/gUXV0LuuaC5N9AEKsFk9yCLChYLFxE1SlR/h52t0M3NuA==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.8ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'admin@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.8ms)
+
+
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"k2MpEUW1yoBD9dFbzpp5k2uvzaXcaskynd1WpfbF/gUXV0LuuaC5N9AEKsFk9yCLChYLFxE1SlR/h52t0M3NuA==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (0.9ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (13.2ms)
+Completed 200 OK in 197ms (Views: 59.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2017-02-28 13:46:31 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"k2MpEUW1yoBD9dFbzpp5k2uvzaXcaskynd1WpfbF/gUXV0LuuaC5N9AEKsFk9yCLChYLFxE1SlR/h52t0M3NuA==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'admin@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 14ms (ActiveRecord: 1.2ms)
+
+
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"k2MpEUW1yoBD9dFbzpp5k2uvzaXcaskynd1WpfbF/gUXV0LuuaC5N9AEKsFk9yCLChYLFxE1SlR/h52t0M3NuA==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (1.2ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (20.7ms)
+Completed 200 OK in 376ms (Views: 249.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2017-02-28 13:46:52 +0100
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oid+4Fe66/RIFj2B9/GGS4eLYzSu6zosrslCaDt8iDImExUfq6+YQ9vnxhtdnN9T5jKlhmO0uUpMk4lgHXS7jw==", "admin_user"=>{"email"=>"pavillon@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (20.2ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'pavillon@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 24ms (ActiveRecord: 20.2ms)
+
+
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oid+4Fe66/RIFj2B9/GGS4eLYzSu6zosrslCaDt8iDImExUfq6+YQ9vnxhtdnN9T5jKlhmO0uUpMk4lgHXS7jw==", "admin_user"=>{"email"=>"pavillon@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (0.7ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (10.5ms)
+Completed 200 OK in 180ms (Views: 53.4ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (5.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdminUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `admin_users` WHERE `admin_users`.`email` = BINARY 'admin@example.com' LIMIT 1[0m
+  [1m[35mSQL (22.2ms)[0m  [1m[32mINSERT INTO `admin_users` (`email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('admin@example.com', '$2a$11$Et5kVJF9Z/c1Hu9o1jvcpuGkD9GgUPwLSeUI9C6ml4Q3MiSEpQM5i', '2017-02-28 12:48:52', '2017-02-28 12:48:52')[0m
+  [1m[35m (51.7ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/admin" for 127.0.0.1 at 2017-02-28 13:49:21 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2017-02-28 13:49:21 +0100
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2017-02-28 13:49:21 +0100
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (1.2ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (21.3ms)
+Completed 200 OK in 255ms (Views: 246.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2017-02-28 13:49:28 +0100
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jv9oydSilqpm0RP4qBwFLzN8jHMxhtxmk5oGFZNv8FsKywM2KLflHfUg6GICcVw3UsVKwfzZXwBxwM0dtWfD5g==", "admin_user"=>{"email"=>"pavillon@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.4ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'pavillon@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 20ms (ActiveRecord: 0.4ms)
+
+
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jv9oydSilqpm0RP4qBwFLzN8jHMxhtxmk5oGFZNv8FsKywM2KLflHfUg6GICcVw3UsVKwfzZXwBxwM0dtWfD5g==", "admin_user"=>{"email"=>"pavillon@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (0.8ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (11.0ms)
+Completed 200 OK in 172ms (Views: 49.1ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (8.1ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdminUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `admin_users` WHERE `admin_users`.`email` = BINARY 'admin@example.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdminUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `admin_users` WHERE `admin_users`.`email` = BINARY 'admin@example.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+Started POST "/admin/login" for 127.0.0.1 at 2017-02-28 13:52:37 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jv9oydSilqpm0RP4qBwFLzN8jHMxhtxmk5oGFZNv8FsKywM2KLflHfUg6GICcVw3UsVKwfzZXwBxwM0dtWfD5g==", "admin_user"=>{"email"=>"pavillon@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'pavillon@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 20ms (ActiveRecord: 6.7ms)
+
+
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jv9oydSilqpm0RP4qBwFLzN8jHMxhtxmk5oGFZNv8FsKywM2KLflHfUg6GICcVw3UsVKwfzZXwBxwM0dtWfD5g==", "admin_user"=>{"email"=>"pavillon@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (1.3ms)
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (21.7ms)
+Completed 200 OK in 382ms (Views: 251.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2017-02-28 13:52:51 +0100
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qhRTp8lBghtGobd1k6ayRCJVZg7pftZFAvTf6qVzvlcuIDhYNVTxrNVQTO85y+tcQ+ygvCQhVSPgrhTig3uN6g==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'admin@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (15.4ms)[0m  [1m[33mUPDATE `admin_users` SET `current_sign_in_at` = '2017-02-28 12:52:51', `last_sign_in_at` = '2017-02-28 12:52:51', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_ip` = '127.0.0.1', `sign_in_count` = 1, `updated_at` = '2017-02-28 12:52:51' WHERE `admin_users`.`id` = 1[0m
+  [1m[35m (44.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/admin
+Completed 302 Found in 252ms (ActiveRecord: 59.9ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2017-02-28 13:52:51 +0100
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb (64.7ms)
+Completed 200 OK in 99ms (Views: 79.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/admin/admin_users" for 127.0.0.1 at 2017-02-28 13:52:59 +0100
+Processing by Admin::AdminUsersController#index as HTML
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `admin_users` LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `admin_users` LIMIT 30 OFFSET 0) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `admin_users`[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `admin_users` LIMIT 30 OFFSET 0) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` ORDER BY `admin_users`.`id` desc LIMIT 30 OFFSET 0[0m
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb (137.2ms)
+Completed 200 OK in 187ms (Views: 160.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/admin/comments" for 127.0.0.1 at 2017-02-28 13:53:00 +0100
+Processing by Admin::CommentsController#index as HTML
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `active_admin_comments` WHERE `active_admin_comments`.`namespace` = 'admin'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `active_admin_comments` WHERE `active_admin_comments`.`namespace` = 'admin' LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT DISTINCT `active_admin_comments`.`resource_type` FROM `active_admin_comments` ORDER BY resource_type asc[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT DISTINCT `active_admin_comments`.`author_type` FROM `active_admin_comments` ORDER BY author_type asc[0m
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb (147.9ms)
+Completed 200 OK in 168ms (Views: 154.3ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/admin/dashboard" for 127.0.0.1 at 2017-02-28 13:53:02 +0100
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.6ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb (58.9ms)
+Completed 200 OK in 67ms (Views: 62.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2017-02-28 14:13:36 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (14.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb
+  Rendered /home/satan/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb (906.8ms)
+Completed 200 OK in 927ms (Views: 910.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:13:38 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 273ms (Views: 270.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:14:30 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2035ms (Views: 2033.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:15:09 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.2ms)
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:15:10 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2124ms (Views: 2122.7ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 1463ms (Views: 1462.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:15:18 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 144ms (Views: 141.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:15:18 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 125ms (Views: 124.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:15:29 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 718ms (Views: 709.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:15:32 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 157ms (Views: 156.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:19:20 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 1114ms (Views: 1113.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-28 14:36:28 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (11.1ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 1598ms (Views: 1589.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/photos" for 127.0.0.1 at 2017-02-28 14:41:32 +0100
+Processing by PagesController#photos as HTML
+  Rendering pages/photos.html.erb within layouts/application
+  Rendered pages/photos.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 101ms (Views: 99.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/videos" for 127.0.0.1 at 2017-02-28 14:41:33 +0100
+Processing by PagesController#videos as HTML
+  Rendering pages/videos.html.erb within layouts/application
+  Rendered pages/videos.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 118ms (Views: 117.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/show" for 127.0.0.1 at 2017-02-28 14:41:34 +0100
+Processing by PagesController#show as HTML
+  Rendering pages/show.html.erb within layouts/application
+  Rendered pages/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 125ms (Views: 122.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/photos" for 127.0.0.1 at 2017-02-28 14:41:35 +0100
+Processing by PagesController#photos as HTML
+  Rendering pages/photos.html.erb within layouts/application
+  Rendered pages/photos.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 110ms (Views: 108.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bio" for 127.0.0.1 at 2017-02-28 14:41:36 +0100
+Processing by PagesController#bio as HTML
+  Rendering pages/bio.html.erb within layouts/application
+  Rendered pages/bio.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 101ms (Views: 99.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2017-02-28 14:41:37 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 114ms (Views: 111.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bio" for 127.0.0.1 at 2017-02-28 14:41:38 +0100
+Processing by PagesController#bio as HTML
+  Rendering pages/bio.html.erb within layouts/application
+  Rendered pages/bio.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 107ms (Views: 105.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2017-02-28 14:41:40 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 132ms (Views: 129.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/photos" for 127.0.0.1 at 2017-02-28 14:41:41 +0100
+Processing by PagesController#photos as HTML
+  Rendering pages/photos.html.erb within layouts/application
+  Rendered pages/photos.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 119ms (Views: 116.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/videos" for 127.0.0.1 at 2017-02-28 14:41:42 +0100
+Processing by PagesController#videos as HTML
+  Rendering pages/videos.html.erb within layouts/application
+  Rendered pages/videos.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 116ms (Views: 111.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/show" for 127.0.0.1 at 2017-02-28 14:41:42 +0100
+Processing by PagesController#show as HTML
+  Rendering pages/show.html.erb within layouts/application
+  Rendered pages/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 117ms (Views: 114.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contact" for 127.0.0.1 at 2017-02-28 14:41:43 +0100
+Processing by PagesController#contact as HTML
+  Rendering pages/contact.html.erb within layouts/application
+  Rendered pages/contact.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 119ms (Views: 117.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2017-02-28 14:41:44 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 123ms (Views: 120.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2017-02-28 14:42:43 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 100ms (Views: 99.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-02-28 14:52:16 +0100
+  
+Mysql2::Error (Access denied for user 'root'@'localhost' (using password: YES)):
+  
+mysql2 (0.4.5) lib/mysql2/client.rb:89:in `connect'
+mysql2 (0.4.5) lib/mysql2/client.rb:89:in `initialize'
+activerecord (5.0.1) lib/active_record/connection_adapters/mysql2_adapter.rb:25:in `new'
+activerecord (5.0.1) lib/active_record/connection_adapters/mysql2_adapter.rb:25:in `mysql2_connection'
+activerecord (5.0.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:729:in `new_connection'
+activerecord (5.0.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:773:in `checkout_new_connection'
+activerecord (5.0.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:752:in `try_to_checkout_new_connection'
+activerecord (5.0.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:713:in `acquire_connection'
+activerecord (5.0.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:490:in `checkout'
+activerecord (5.0.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:364:in `connection'
+activerecord (5.0.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:883:in `retrieve_connection'
+activerecord (5.0.1) lib/active_record/connection_handling.rb:128:in `retrieve_connection'
+activerecord (5.0.1) lib/active_record/connection_handling.rb:91:in `connection'
+activerecord (5.0.1) lib/active_record/migration.rb:559:in `connection'
+activerecord (5.0.1) lib/active_record/migration.rb:546:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.1) lib/puma/configuration.rb:232:in `call'
+puma (3.7.1) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.1) lib/puma/server.rb:415:in `process_client'
+puma (3.7.1) lib/puma/server.rb:275:in `block in run'
+puma (3.7.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.0ms)
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (39.0ms)
+Started GET "/" for ::1 at 2017-02-28 14:53:36 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (25.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.0.1) lib/active_record/migration.rb:573:in `check_pending!'
+activerecord (5.0.1) lib/active_record/migration.rb:549:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.1) lib/puma/configuration.rb:232:in `call'
+puma (3.7.1) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.1) lib/puma/server.rb:415:in `process_client'
+puma (3.7.1) lib/puma/server.rb:275:in `block in run'
+puma (3.7.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.3ms)
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (28.8ms)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('4952411849115310650', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to DeviseCreateAdminUsers (20170228123615)
+  [1m[35m (254.8ms)[0m  [1m[35mCREATE TABLE `admin_users` (`id` int AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (199.4ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_admin_users_on_email`  ON `admin_users` (`email`) [0m
+  [1m[35m (197.8ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_admin_users_on_reset_password_token`  ON `admin_users` (`reset_password_token`) [0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170228123615')[0m
+  [1m[35m (30.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateActiveAdminComments (20170228123616)
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class CreateActiveAdminComments < ActiveRecord::Migration[4.2] (called from require at /home/jeremy/Téléchargements/pn2017/bin/rails:9)
+  [1m[35m (254.4ms)[0m  [1m[35mCREATE TABLE `active_admin_comments` (`id` int AUTO_INCREMENT PRIMARY KEY, `namespace` varchar(255), `body` text, `resource_id` varchar(255) NOT NULL, `resource_type` varchar(255) NOT NULL, `author_type` varchar(255), `author_id` int, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (232.3ms)[0m  [1m[35mCREATE  INDEX `index_active_admin_comments_on_namespace`  ON `active_admin_comments` (`namespace`) [0m
+  [1m[35m (199.0ms)[0m  [1m[35mCREATE  INDEX `index_active_admin_comments_on_author_type_and_author_id`  ON `active_admin_comments` (`author_type`, `author_id`) [0m
+  [1m[35m (199.0ms)[0m  [1m[35mCREATE  INDEX `index_active_admin_comments_on_resource_type_and_resource_id`  ON `active_admin_comments` (`resource_type`, `resource_id`) [0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170228123616')[0m
+  [1m[35m (75.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('4952411849115310650')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `active_admin_comments`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'active_admin_comments'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `admin_users`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'admin_users'[0m
+Started GET "/" for ::1 at 2017-02-28 14:54:33 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 7748ms (Views: 7680.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for ::1 at 2017-02-28 14:55:09 +0100
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/login" for ::1 at 2017-02-28 14:55:09 +0100
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (1.3ms)
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (874.4ms)
+Completed 200 OK in 1142ms (Views: 1081.5ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/admin/login" for ::1 at 2017-02-28 14:55:26 +0100
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QGPnl//muL5NE41Ds5Vp/fPKiNI4yh0dgR1OH7WmJzaRaw+rWGCWUF5E9gNjIC/FN5dSTUlexI9tQlKz4AxsXQ==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.4ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'admin@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.4ms)
+
+
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QGPnl//muL5NE41Ds5Vp/fPKiNI4yh0dgR1OH7WmJzaRaw+rWGCWUF5E9gNjIC/FN5dSTUlexI9tQlKz4AxsXQ==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (1.2ms)
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (23.8ms)
+Completed 200 OK in 347ms (Views: 110.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/login" for ::1 at 2017-02-28 14:55:33 +0100
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZWZROv3dGoHWargY4ArAeXEj4iqqGmqczAhTZ+0BPky0brkGWls0b8U9w1gwv4ZBtX44tduOsw4gV0/LuKt1Jw==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'admin@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.3ms)
+
+
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZWZROv3dGoHWargY4ArAeXEj4iqqGmqczAhTZ+0BPky0brkGWls0b8U9w1gwv4ZBtX44tduOsw4gV0/LuKt1Jw==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/shared/_links.erb (1.3ms)
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (23.0ms)
+Completed 200 OK in 319ms (Views: 119.7ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdminUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `admin_users` WHERE `admin_users`.`email` = BINARY 'admin@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `admin_users` (`email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('admin@example.com', '$2a$11$aXO15utKPixrYPguQrnftOf0sKwgqezM.J21iBh0Y4SlAiffAH/rC', '2017-02-28 13:55:58', '2017-02-28 13:55:58')[0m
+  [1m[35m (54.7ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/admin/login" for ::1 at 2017-02-28 14:56:08 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZWZROv3dGoHWargY4ArAeXEj4iqqGmqczAhTZ+0BPky0brkGWls0b8U9w1gwv4ZBtX44tduOsw4gV0/LuKt1Jw==", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`email` = 'admin@example.com' ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE `admin_users` SET `current_sign_in_at` = '2017-02-28 13:56:08', `last_sign_in_at` = '2017-02-28 13:56:08', `current_sign_in_ip` = '::1', `last_sign_in_ip` = '::1', `sign_in_count` = 1, `updated_at` = '2017-02-28 13:56:08' WHERE `admin_users`.`id` = 1[0m
+  [1m[35m (83.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/admin
+Completed 302 Found in 382ms (ActiveRecord: 85.4ms)
+
+
+Started GET "/admin" for ::1 at 2017-02-28 14:56:08 +0100
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb (353.3ms)
+Completed 200 OK in 360ms (Views: 355.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/admin_users" for ::1 at 2017-02-28 14:56:11 +0100
+Processing by Admin::AdminUsersController#index as HTML
+  [1m[36mAdminUser Load (0.4ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `admin_users` LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `admin_users` LIMIT 30 OFFSET 0) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `admin_users`[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `admin_users` LIMIT 30 OFFSET 0) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` ORDER BY `admin_users`.`id` desc LIMIT 30 OFFSET 0[0m
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb (273.5ms)
+Completed 200 OK in 296ms (Views: 283.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/admin/comments" for ::1 at 2017-02-28 14:56:14 +0100
+Processing by Admin::CommentsController#index as HTML
+  [1m[36mAdminUser Load (0.4ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `active_admin_comments` WHERE `active_admin_comments`.`namespace` = 'admin'[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `active_admin_comments` WHERE `active_admin_comments`.`namespace` = 'admin' LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT DISTINCT `active_admin_comments`.`resource_type` FROM `active_admin_comments` ORDER BY resource_type asc[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT DISTINCT `active_admin_comments`.`author_type` FROM `active_admin_comments` ORDER BY author_type asc[0m
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb (168.6ms)
+Completed 200 OK in 185ms (Views: 171.2ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/admin/dashboard" for ::1 at 2017-02-28 14:56:16 +0100
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/page/index.html.arb (101.8ms)
+Completed 200 OK in 106ms (Views: 103.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/comments" for ::1 at 2017-02-28 14:56:23 +0100
+Processing by Admin::CommentsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  `admin_users`.* FROM `admin_users` WHERE `admin_users`.`id` = 1 ORDER BY `admin_users`.`id` ASC LIMIT 1[0m
+  Rendering /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `active_admin_comments` WHERE `active_admin_comments`.`namespace` = 'admin'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM `active_admin_comments` WHERE `active_admin_comments`.`namespace` = 'admin' LIMIT 30 OFFSET 0) subquery_for_count[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT DISTINCT `active_admin_comments`.`resource_type` FROM `active_admin_comments` ORDER BY resource_type asc[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT DISTINCT `active_admin_comments`.`author_type` FROM `active_admin_comments` ORDER BY author_type asc[0m
+  Rendered /home/jeremy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activeadmin-1.0.0.pre4/app/views/active_admin/resource/index.html.arb (111.0ms)
+Completed 200 OK in 120ms (Views: 113.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2017-02-28 14:56:28 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 253ms (Views: 251.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for ::1 at 2017-02-28 14:56:30 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 222ms (Views: 220.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for ::1 at 2017-02-28 14:56:32 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 189ms (Views: 188.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for ::1 at 2017-02-28 14:56:33 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 238ms (Views: 237.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-02-28 14:56:33 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 256ms (Views: 254.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for ::1 at 2017-02-28 14:56:34 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 228ms (Views: 227.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for ::1 at 2017-02-28 14:56:37 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 230ms (Views: 228.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-02-28 14:56:38 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 230ms (Views: 228.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bio" for ::1 at 2017-02-28 14:56:38 +0100
+Processing by PagesController#bio as HTML
+  Rendering pages/bio.html.erb within layouts/application
+  Rendered pages/bio.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 249ms (Views: 247.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for ::1 at 2017-02-28 14:56:39 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 227ms (Views: 226.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-02-28 14:56:40 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 241ms (Views: 239.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for ::1 at 2017-02-28 14:56:41 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 272ms (Views: 269.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/photos" for ::1 at 2017-02-28 14:56:41 +0100
+Processing by PagesController#photos as HTML
+  Rendering pages/photos.html.erb within layouts/application
+  Rendered pages/photos.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 298ms (Views: 296.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/videos" for ::1 at 2017-02-28 14:56:42 +0100
+Processing by PagesController#videos as HTML
+  Rendering pages/videos.html.erb within layouts/application
+  Rendered pages/videos.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 244ms (Views: 242.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bio" for ::1 at 2017-02-28 14:56:43 +0100
+Processing by PagesController#bio as HTML
+  Rendering pages/bio.html.erb within layouts/application
+  Rendered pages/bio.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 230ms (Views: 228.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/photos" for ::1 at 2017-02-28 14:56:44 +0100
+Processing by PagesController#photos as HTML
+  Rendering pages/photos.html.erb within layouts/application
+  Rendered pages/photos.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 253ms (Views: 251.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-02-28 14:56:45 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 231ms (Views: 229.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/news" for ::1 at 2017-02-28 14:57:09 +0100
+Processing by PagesController#news as HTML
+  Rendering pages/news.html.erb within layouts/application
+  Rendered pages/news.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 262ms (Views: 261.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-02-28 14:57:10 +0100
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 224ms (Views: 222.8ms | ActiveRecord: 0.0ms)
+
+
